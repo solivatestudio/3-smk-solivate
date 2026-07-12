@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", Times, serif;
+
+  /* Brand Colors */
+  --color-cobalt: #023E8A;
+  --color-yellowy: #D7FE3F;
+  --color-turquoise: #00B4D7;
+  --color-coral: #FF5A60;
+
+  /* Interface & Neutral Colors */
+  --color-main-white: #FFFFFF;
+  --color-pale-gray: #EDF4FC;
+  --color-dark-navy: #051A2D;
+  --color-blue-gray: #647084;
+}
+
+/* Custom Utilities for smooth scrolling and clean font rendering */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  color: var(--color-dark-navy);
+  background-color: var(--color-main-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #EDF4FC;
+}
+::-webkit-scrollbar-thumb {
+  background: #023E8A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00B4D7;
+}
+
+/* Gradient Utility helpers */
+.bg-solivate-gradient {
+  background: linear-gradient(135deg, #023E8A 0%, #00B4D7 100%);
+}
+.text-solivate-gradient {
+  background: linear-gradient(135deg, #023E8A 0%, #00B4D7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+

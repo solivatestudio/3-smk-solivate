@@ -1,0 +1,6 @@
+{
+  "name": "SMK Solivate 01",
+  "description": "Website Resmi SMK Solivate 01 - Multi-page & Landing Profile Sekolah Menengah Kejuruan Modern dengan Solivate Brand Kit Guidelines",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
