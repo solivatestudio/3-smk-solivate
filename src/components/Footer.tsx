@@ -63,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 { label: 'Profil & Sejarah Sekolah', id: 'profil' },
                 { label: '6 Kompetensi Keahlian', id: 'jurusan' },
                 { label: 'Fasilitas & Lab Industri', id: 'fasilitas' },
-                { label: 'PPDB Online & Simulasi Tes AI', id: 'ppdb' },
+                { label: 'SPMB Online & Simulasi Tes AI', id: 'ppdb' },
                 { label: 'Berita & Prestasi Terbaru', id: 'berita' },
                 { label: 'Kontak & FAQ', id: 'kontak' },
               ].map((item) => (
@@ -137,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 onClick={() => handlePageClick('ppdb')}
                 className="w-full py-3 px-4 rounded-xl bg-[#D7FE3F] hover:bg-[#cbf531] text-[#051A2D] font-black text-xs uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2"
               >
-                <span>Daftar Sekarang (PPDB 2026)</span>
+                <span>Daftar Sekarang (SPMB 2026)</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -157,6 +157,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </button>
             <button onClick={() => handlePageClick('kontak')} className="hover:text-[#D7FE3F] transition-colors">
               Terms of Service
+            </button>
+            <button onClick={() => handlePageClick('dashboard')} className="text-[#647084] hover:text-[#D7FE3F] transition-colors text-[10px] font-bold flex items-center gap-1">
+              <ShieldCheck className="w-3 h-3" /> Admin Panel
             </button>
             <span className="flex items-center gap-1 text-white/70">
               Designed with <Heart className="w-3.5 h-3.5 text-[#FF5A60] fill-[#FF5A60]" /> by Solivate Studio

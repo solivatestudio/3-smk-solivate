@@ -1,4 +1,4 @@
-export type PageType = 'beranda' | 'profil' | 'jurusan' | 'fasilitas' | 'ppdb' | 'berita' | 'kontak';
+export type PageType = 'beranda' | 'profil' | 'jurusan' | 'fasilitas' | 'ppdb' | 'berita' | 'kontak' | 'dashboard';
 
 export interface Major {
   id: string;
@@ -70,4 +70,9 @@ export interface PpdbApplication {
   selectedMajorId: string;
   parentName: string;
   parentPhone: string;
+}
+
+export interface SpmbSubmission extends PpdbApplication {
+  regNumber: string;
+  submittedAt: string;
 }

@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
     { id: 'profil', label: 'Profil' },
     { id: 'jurusan', label: 'Jurusan' },
     { id: 'fasilitas', label: 'Fasilitas Lab' },
-    { id: 'ppdb', label: 'PPDB 2026' },
+    { id: 'ppdb', label: 'SPMB 2026' },
     { id: 'berita', label: 'Berita' },
     { id: 'kontak', label: 'Kontak' },
   ];
@@ -113,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
               className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#023E8A] hover:bg-[#012f6b] text-white font-extrabold text-xs tracking-wider uppercase transition-all shadow-sm hover:shadow-md group"
             >
               <GraduationCap className="w-4 h-4 text-[#D7FE3F]" />
-              <span>DAFTAR PPDB</span>
+              <span>DAFTAR SPMB</span>
             </button>
           </div>
 
@@ -182,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, onOpenS
               className="w-full py-3.5 px-4 rounded-xl bg-[#023E8A] text-white font-black text-sm flex items-center justify-center gap-2 shadow-md uppercase tracking-wider"
             >
               <GraduationCap className="w-5 h-5 text-[#D7FE3F]" />
-              <span>Daftar PPDB Online 2026</span>
+              <span>Daftar SPMB Online 2026</span>
             </button>
           </div>
         </div>

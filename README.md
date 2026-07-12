@@ -16,7 +16,8 @@
 |-------|------------|
 | **🏠 7 Halaman Lengkap** | Beranda, Profil, Jurusan, Fasilitas, PPDB, Berita, Kontak |
 | **🤖 SoliBot AI** | Chatbot konsultasi jurusan berbasis Google Gemini 2.5 Flash |
-| **📝 PPDB Online** | Simulasi tes minat + formulir pendaftaran dengan bukti digital |
+| **📝 SPMB Online** | Seleksi & formulir pendaftaran siswa baru dengan bukti digital |
+| **📊 Dashboard Admin** | Panel admin dengan statistik pendaftar, tabel, filter & export CSV |
 | **🎯 Tes Minat AI** | Quiz 4 pertanyaan → rekomendasi jurusan otomatis |
 | **📱 Responsif** | Mobile-first dengan navigasi drawer & scroll-aware navbar |
 | **🎨 Animasi** | Transisi halus dengan library Motion |
@@ -29,7 +30,8 @@
 | **Profil** | `/profil` | Sambutan kepala sekolah, visi-misi, sejarah, tim pengajar |
 | **Jurusan** | `/jurusan` | 6 jurusan dengan detail lengkap (kurikulum, prospek, mitra) |
 | **Fasilitas** | `/fasilitas` | Galeri fasilitas dengan filter kategori & detail modal |
-| **PPDB** | `/ppdb` | Tes minat AI + formulir pendaftaran online |
+| **SPMB** | `/ppdb` | Seleksi penerimaan siswa baru + tes minat AI + formulir |
+| **Dashboard** | `/dashboard` | Panel admin (statistik, tabel, filter, export CSV) |
 | **Berita** | `/berita` | Artikel berita dengan filter & pencarian |
 | **Kontak** | `/kontak` | Info kontak, form pesan, FAQ accordion |
 

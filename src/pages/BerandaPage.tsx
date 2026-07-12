@@ -47,7 +47,7 @@ export const BerandaPage: React.FC<BerandaPageProps> = ({
               <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-md">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#D7FE3F] animate-ping"></span>
                 <span className="text-xs sm:text-sm font-extrabold text-[#D7FE3F] uppercase tracking-wider">
-                  Pendaftaran PPDB Tahun Ajaran 2026/2027 Telah Dibuka
+                  Pendaftaran SPMB Tahun Ajaran 2026/2027 Telah Dibuka
                 </span>
               </div>
 
@@ -69,7 +69,7 @@ export const BerandaPage: React.FC<BerandaPageProps> = ({
                   className="px-8 py-4 rounded-2xl bg-[#D7FE3F] hover:bg-[#cbf531] text-[#051A2D] font-extrabold text-base transition-all shadow-xl hover:scale-105 flex items-center justify-center gap-3 group"
                 >
                   <GraduationCap className="w-5 h-5 text-[#023E8A]" />
-                  <span>Daftar PPDB Online</span>
+                  <span>Daftar SPMB Online</span>
                   <ArrowRight className="w-5 h-5 text-[#023E8A] group-hover:translate-x-1 transition-transform" />
                 </button>
 
@@ -409,7 +409,7 @@ export const BerandaPage: React.FC<BerandaPageProps> = ({
                 onClick={() => onNavigate('ppdb')}
                 className="px-8 py-4 rounded-2xl bg-[#D7FE3F] hover:bg-[#cbf531] text-[#051A2D] font-black text-base transition-all shadow-xl flex items-center justify-center gap-3"
               >
-                <span>Formulir PPDB Online 2026</span>
+                <span>Formulir SPMB Online 2026</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
 

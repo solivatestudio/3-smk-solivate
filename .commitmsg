@@ -1,0 +1,10 @@
+feat: ubah PPDB ke SPMB + tambah dashboard admin
+
+- Ganti semua label "PPDB" ke "SPMB" di seluruh UI (Navbar, Footer, Beranda)
+- Ubah halaman pendaftaran jadi SPMB dengan label + nomor registrasi baru
+- Tambah persistence data ke localStorage agar tersimpan
+- Dashboard admin baru: statistik, tabel pencarian, filter jurusan, export CSV
+- Dashboard dilindungi PIN "solivate2026", akses via footer Admin Panel
+- Tipe PageType ditambah 'dashboard', interface SpmbSubmission baru
+
+Co-authored-by: hmad28 <email1.hammad@gmail.com>

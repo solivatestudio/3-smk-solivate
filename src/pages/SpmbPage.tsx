@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
-import { PageType, PpdbApplication } from '../types';
+import { PageType, PpdbApplication, SpmbSubmission } from '../types';
 import { MAJORS_DATA, SCHOOL_INFO } from '../data/schoolData';
 import { 
   GraduationCap, Sparkles, CheckCircle2, ArrowRight, Printer, 
   HelpCircle, UserCheck, Award, FileText, Send, AlertCircle, RefreshCw 
 } from 'lucide-react';
 
-interface PpdbPageProps {
+interface SpmbPageProps {
   onNavigate: (page: PageType) => void;
   preselectedMajorId?: string;
 }
 
-export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajorId }) => {
+const STORAGE_KEY = 'spmb-submissions';
+
+function loadSubmissions(): SpmbSubmission[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveSubmission(sub: SpmbSubmission) {
+  const list = loadSubmissions();
+  list.unshift(sub);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+
+export const SpmbPage: React.FC<SpmbPageProps> = ({ onNavigate, preselectedMajorId }) => {
   const [activeSubTab, setActiveSubTab] = useState<'form' | 'quiz'>('quiz');
 
   // QUIZ STATE
@@ -32,7 +49,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
     parentName: '',
     parentPhone: ''
   });
-  const [submittedApp, setSubmittedApp] = useState<PpdbApplication | null>(null);
+  const [submittedApp, setSubmittedApp] = useState<SpmbSubmission | null>(null);
   const [regNumber, setRegNumber] = useState<string>('');
 
   const QUIZ_QUESTIONS = [
@@ -46,7 +63,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
       ]
     },
     {
-      q: 'Ketika melihat sebuah produk teknologi baru, apa yang pertama kali kamu perhatikan?',
+      q: 'Ketika melihat sebuah produk teknologi baru, apa yang pertama kali kamu注意到?',
       options: [
         { label: 'Bagaimana cara aplikasi/software di dalamnya bekerja & algoritmannya', major: 'pplg' },
         { label: 'Tampilan antarmuka visualnya (UI/UX) dan estetika desain grafisnya', major: 'dkv' },
@@ -107,9 +124,15 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
       alert('Mohon lengkapi Nama Lengkap, NISN, dan Nomor Telepon.');
       return;
     }
-    const generatedReg = `PPDB-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+    const generatedReg = `SPMB-2026-${Math.floor(100000 + Math.random() * 900000)}`;
+    const submission: SpmbSubmission = {
+      ...formData,
+      regNumber: generatedReg,
+      submittedAt: new Date().toISOString()
+    };
+    saveSubmission(submission);
     setRegNumber(generatedReg);
-    setSubmittedApp(formData);
+    setSubmittedApp(submission);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -122,14 +145,14 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
           <div className="max-w-3xl space-y-4 relative z-10">
             <div className="flex items-center gap-2">
               <span className="bg-[#D7FE3F] text-[#051A2D] text-xs font-black px-3 py-1 rounded-md uppercase tracking-wider">
-                PENERIMAAN PESERTA DIDIK BARU
+                SELEKSI PENERIMAAN MURID BARU
               </span>
               <span className="bg-[#FF5A60] text-white text-xs font-bold px-2.5 py-1 rounded-md">
                 TAHUN AJARAN 2026/2027
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
-              Portal PPDB Online & <span className="text-[#D7FE3F]">Simulasi Tes Minat AI</span>
+              Portal SPMB Online & <span className="text-[#D7FE3F]">Simulasi Tes Minat AI</span>
             </h1>
             <p className="text-white/80 text-base sm:text-lg leading-relaxed">
               Ikuti tes singkat rekomendasi jurusan cerdas untuk mengetahui potensi bakatmu, lalu daftarkan dirimu secara online dalam waktu kurang dari 3 menit.
@@ -162,7 +185,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
             }`}
           >
             <GraduationCap className="w-4 h-4 text-[#D7FE3F]" />
-            <span>2. Formulir PPDB Online</span>
+            <span>2. Formulir SPMB Online</span>
           </button>
         </div>
       </section>
@@ -257,7 +280,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
         </section>
       )}
 
-      {/* SUB TAB 2: FORMULIR PPDB ONLINE */}
+      {/* SUB TAB 2: FORMULIR SPMB ONLINE */}
       {activeSubTab === 'form' && (
         <section className="max-w-4xl mx-auto px-4 sm:px-6">
           
@@ -414,7 +437,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
                     className="w-full py-4 rounded-2xl bg-[#D7FE3F] hover:bg-[#cbf531] text-[#051A2D] font-black text-base uppercase tracking-wider transition-all shadow-xl hover:scale-101 flex items-center justify-center gap-2"
                   >
                     <Send className="w-5 h-5 text-[#023E8A]" />
-                    <span>Kirim Pendaftaran & Cetak Bukti PPDB</span>
+                    <span>Kirim Pendaftaran & Cetak Bukti SPMB</span>
                   </button>
                 </div>
 
@@ -430,7 +453,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
                   </div>
                   <div>
                     <h3 className="font-extrabold text-xl text-[#051A2D]">SMK SOLIVATE 01</h3>
-                    <p className="text-xs font-bold text-[#00B4D7]">BUKTI REGISTRASI PPDB ONLINE 2026/2027</p>
+                    <p className="text-xs font-bold text-[#00B4D7]">BUKTI REGISTRASI SPMB ONLINE 2026/2027</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -476,7 +499,7 @@ export const PpdbPage: React.FC<PpdbPageProps> = ({ onNavigate, preselectedMajor
               <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <p className="text-xs text-amber-800 leading-relaxed font-medium">
-                  Selamat! Data Anda telah masuk ke dalam sistem panitia PPDB SMK Solivate 01. Silakan simpan nomor pendaftaran ini untuk jadwal tes wawancara dan verifikasi rapor.
+                  Selamat! Data Anda telah masuk ke dalam sistem panitia SPMB SMK Solivate 01. Silakan simpan nomor pendaftaran ini untuk jadwal tes wawancara dan verifikasi rapor.
                 </p>
               </div>
 

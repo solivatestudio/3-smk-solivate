@@ -12,23 +12,53 @@ import { BerandaPage } from './pages/BerandaPage';
 import { ProfilPage } from './pages/ProfilPage';
 import { JurusanPage } from './pages/JurusanPage';
 import { FasilitasPage } from './pages/FasilitasPage';
-import { PpdbPage } from './pages/PpdbPage';
+import { SpmbPage } from './pages/SpmbPage';
 import { BeritaPage } from './pages/BeritaPage';
 import { KontakPage } from './pages/KontakPage';
-import { Sparkles, MessageSquare } from 'lucide-react';
+import { DashboardPage } from './pages/DashboardPage';
+import { Sparkles, MessageSquare, Lock, ShieldAlert } from 'lucide-react';
+
+const ADMIN_PIN = 'solivate2026';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('beranda');
   const [soliBotOpen, setSoliBotOpen] = useState(false);
   const [selectedMajorId, setSelectedMajorId] = useState<string>('pplg');
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
+  const [adminPinInput, setAdminPinInput] = useState('');
+  const [adminPinError, setAdminPinError] = useState('');
+  const [adminPinOpen, setAdminPinOpen] = useState(false);
 
   const handleNavigate = (page: PageType) => {
+    if (page === 'dashboard' && !isAdminAuthenticated) {
+      setAdminPinOpen(true);
+      return;
+    }
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectMajor = (majorId: string) => {
     setSelectedMajorId(majorId);
+  };
+
+  const handleAdminLogin = () => {
+    if (adminPinInput === ADMIN_PIN) {
+      setIsAdminAuthenticated(true);
+      setAdminPinOpen(false);
+      setAdminPinInput('');
+      setAdminPinError('');
+      setCurrentPage('dashboard');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setAdminPinError('PIN salah. Coba lagi.');
+      setAdminPinInput('');
+    }
+  };
+
+  const handleAdminLogout = () => {
+    setIsAdminAuthenticated(false);
+    setCurrentPage('beranda');
   };
 
   return (
@@ -65,7 +95,7 @@ export default function App() {
           <FasilitasPage onNavigate={handleNavigate} />
         )}
         {currentPage === 'ppdb' && (
-          <PpdbPage
+          <SpmbPage
             onNavigate={handleNavigate}
             preselectedMajorId={selectedMajorId}
           />
@@ -75,6 +105,9 @@ export default function App() {
         )}
         {currentPage === 'kontak' && (
           <KontakPage onNavigate={handleNavigate} />
+        )}
+        {currentPage === 'dashboard' && isAdminAuthenticated && (
+          <DashboardPage onLogout={handleAdminLogout} />
         )}
       </main>
 
@@ -112,6 +145,57 @@ export default function App() {
           handleNavigate('jurusan');
         }}
       />
+
+      {/* Admin PIN Modal */}
+      {adminPinOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setAdminPinOpen(false)}>
+          <div
+            className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl space-y-6"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="text-center space-y-2">
+              <div className="w-16 h-16 rounded-2xl bg-[#051A2D] flex items-center justify-center mx-auto">
+                <Lock className="w-8 h-8 text-[#D7FE3F]" />
+              </div>
+              <h3 className="text-xl font-extrabold text-[#051A2D]">Admin Dashboard</h3>
+              <p className="text-sm text-[#647084]">Masukkan PIN admin untuk mengakses dashboard SPMB.</p>
+            </div>
+
+            <div className="space-y-3">
+              <input
+                type="password"
+                value={adminPinInput}
+                onChange={e => { setAdminPinInput(e.target.value); setAdminPinError(''); }}
+                onKeyDown={e => e.key === 'Enter' && handleAdminLogin()}
+                placeholder="Masukkan PIN..."
+                className="w-full px-4 py-3.5 rounded-xl bg-[#EDF4FC]/50 border border-[#EDF4FC] focus:border-[#023E8A] text-sm font-semibold text-center tracking-widest focus:outline-none"
+                autoFocus
+              />
+              {adminPinError && (
+                <p className="text-xs font-bold text-[#FF5A60] flex items-center gap-1.5">
+                  <ShieldAlert className="w-3.5 h-3.5" />
+                  {adminPinError}
+                </p>
+              )}
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => { setAdminPinOpen(false); setAdminPinInput(''); setAdminPinError(''); }}
+                className="flex-1 py-3.5 rounded-xl bg-[#EDF4FC] text-[#647084] font-extrabold text-sm"
+              >
+                Batal
+              </button>
+              <button
+                onClick={handleAdminLogin}
+                className="flex-1 py-3.5 rounded-xl bg-[#023E8A] hover:bg-[#012f6b] text-white font-extrabold text-sm"
+              >
+                Masuk Dashboard
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
