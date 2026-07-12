@@ -175,7 +175,7 @@ Gunakan bahasa Indonesia santun, ringkas, dan antusias.`;
   ];
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 w-[calc(100vw-40px)] sm:w-[380px] h-[520px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-[#EDF4FC] flex flex-col overflow-hidden ring-1 ring-[#023E8A]/10 animate-slideUp">
+    <div className="fixed bottom-5 right-5 z-50 w-[calc(100vw-40px)] sm:w-[380px] h-[520px] sm:h-[560px] max-h-[82vh] bg-white rounded-3xl shadow-2xl border border-[#EDF4FC] flex flex-col overflow-hidden ring-1 ring-[#023E8A]/10 animate-slideUp">
       
       {/* Floating Chat Header */}
       <div className="bg-[#023E8A] px-4 py-3.5 text-white flex items-center justify-between border-b-2 border-[#D7FE3F] shrink-0">
@@ -291,7 +291,7 @@ Gunakan bahasa Indonesia santun, ringkas, dan antusias.`;
             <button
               key={idx}
               onClick={() => handleSend(qp)}
-              className="px-2.5 py-1 rounded-full bg-[#EDF4FC]/80 hover:bg-[#023E8A] text-[#051A2D] hover:text-white text-[11px] font-semibold whitespace-nowrap transition-all border border-[#00B4D7]/20"
+              className="px-3 py-2.5 rounded-full bg-[#EDF4FC]/80 hover:bg-[#023E8A] text-[#051A2D] hover:text-white text-[11px] font-semibold whitespace-nowrap transition-all border border-[#00B4D7]/20"
             >
               {qp}
             </button>

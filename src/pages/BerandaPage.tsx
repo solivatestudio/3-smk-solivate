@@ -103,7 +103,7 @@ export const BerandaPage: React.FC<BerandaPageProps> = ({
                   <img
                     src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
                     alt="Siswa SMK Solivate 01 di Lab Modern"
-                    className="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    className="w-full h-[250px] sm:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#051A2D] via-transparent to-transparent opacity-80"></div>
                   
@@ -329,7 +329,7 @@ export const BerandaPage: React.FC<BerandaPageProps> = ({
           ].map((partner, idx) => (
             <div
               key={idx}
-              className="bg-[#EDF4FC]/60 hover:bg-[#EDF4FC] p-4 rounded-2xl border border-[#EDF4FC] flex items-center justify-center h-20 transition-all group"
+              className="bg-[#EDF4FC]/60 hover:bg-[#EDF4FC] p-3 sm:p-4 rounded-2xl border border-[#EDF4FC] flex items-center justify-center min-h-[72px] sm:h-20 transition-all group"
             >
               <span className="font-extrabold text-sm text-[#051A2D] group-hover:text-[#023E8A] transition-colors">
                 {partner}

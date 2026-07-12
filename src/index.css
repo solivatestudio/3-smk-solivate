@@ -52,3 +52,20 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
+/* Mobile Touch Targets — minimum 44px for all interactive elements */
+button:not(.no-min-touch):not(:has(svg:only-child):not(:has(span))),
+a:not(.no-min-touch),
+input,
+select,
+textarea,
+[role="button"]:not(.no-min-touch) {
+  min-height: 44px;
+}
+/* Icon-only buttons — force square 44px */
+button:has(svg:only-child):not(:has(span)):not(.no-min-touch) {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

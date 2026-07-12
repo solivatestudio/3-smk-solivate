@@ -261,10 +261,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onLogout }) => {
                       <td className="py-3.5 px-2">
                         <button
                           onClick={() => setSelected(d)}
-                          className="p-1.5 rounded-lg bg-[#EDF4FC] hover:bg-[#023E8A] text-[#023E8A] hover:text-white transition-colors"
+                          className="p-2 rounded-lg bg-[#EDF4FC] hover:bg-[#023E8A] text-[#023E8A] hover:text-white transition-colors"
                           title="Lihat Detail"
                         >
-                          <Eye className="w-4 h-4" />
+                          <Eye className="w-5 h-5" />
                         </button>
                       </td>
                     </tr>
@@ -299,13 +299,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onLogout }) => {
                     setData([]);
                     setShowConfirmClear(false);
                   }}
-                  className="px-4 py-2 rounded-lg bg-red-600 text-white font-extrabold text-xs"
+                  className="px-4 py-3 rounded-lg bg-red-600 text-white font-extrabold text-xs"
                 >
                   Ya, Hapus Semua
                 </button>
                 <button
                   onClick={() => setShowConfirmClear(false)}
-                  className="px-4 py-2 rounded-lg bg-white border text-[#647084] font-bold text-xs"
+                  className="px-4 py-3 rounded-lg bg-white border text-[#647084] font-bold text-xs"
                 >
                   Batal
                 </button>

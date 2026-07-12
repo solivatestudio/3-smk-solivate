@@ -40,9 +40,9 @@ export const ProfilPage: React.FC<ProfilPageProps> = ({ onNavigate }) => {
                 <img
                   src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
                   alt={SCHOOL_INFO.principal.name}
-                  className="w-64 h-64 rounded-3xl object-cover shadow-2xl border-4 border-white mx-auto"
+                  className="w-48 h-48 sm:w-64 sm:h-64 rounded-3xl object-cover shadow-2xl border-4 border-white mx-auto"
                 />
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#023E8A] text-white px-4 py-1.5 rounded-xl shadow-lg font-extrabold text-xs whitespace-nowrap border border-[#D7FE3F]">
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#023E8A] text-white px-4 py-1.5 rounded-xl shadow-lg font-extrabold text-xs text-center max-w-[180px] border border-[#D7FE3F]">
                   Kepala SMK Solivate 01
                 </div>
               </div>
