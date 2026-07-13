@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageType } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -29,12 +29,41 @@ export default function App() {
   const [adminPinError, setAdminPinError] = useState('');
   const [adminPinOpen, setAdminPinOpen] = useState(false);
 
+  // Restore page from URL hash on mount & handle back/forward
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '') as PageType;
+    const validPages: PageType[] = ['beranda', 'profil', 'jurusan', 'fasilitas', 'ppdb', 'berita', 'kontak', 'dashboard'];
+    if (hash && validPages.includes(hash)) {
+      if (hash === 'dashboard') {
+        // Trigger PIN modal instead of auto-navigating
+        setAdminPinOpen(true);
+      } else {
+        setCurrentPage(hash);
+      }
+    }
+    const handlePopState = () => {
+      const page = (window.location.hash.replace('#', '') || 'beranda') as PageType;
+      if (validPages.includes(page)) {
+        if (page === 'dashboard') {
+          setIsAdminAuthenticated(false);
+          setAdminPinOpen(true);
+        } else {
+          setCurrentPage(page);
+          window.scrollTo({ top: 0 });
+        }
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleNavigate = (page: PageType) => {
     if (page === 'dashboard' && !isAdminAuthenticated) {
       setAdminPinOpen(true);
       return;
     }
     setCurrentPage(page);
+    window.location.hash = page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -49,6 +78,7 @@ export default function App() {
       setAdminPinInput('');
       setAdminPinError('');
       setCurrentPage('dashboard');
+      window.location.hash = 'dashboard';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setAdminPinError('PIN salah. Coba lagi.');
@@ -59,6 +89,7 @@ export default function App() {
   const handleAdminLogout = () => {
     setIsAdminAuthenticated(false);
     setCurrentPage('beranda');
+    window.location.hash = 'beranda';
   };
 
   return (
