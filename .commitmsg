@@ -1,9 +1,9 @@
-feat: hash-based URL routing — refresh tetap di halaman yang sama
+fix: perbaiki tampilan cetak bukti SPMB
 
-- handleNavigate sekarang set window.location.hash
-- useEffect di mount restore currentPage dari hash URL
-- popstate listener handle back/forward browser
-- Semua halaman punya URL: /#beranda, /#profil, /#ppdb, /#dashboard, dll
-- Zero dependencies, cuma 1 file diubah (App.tsx)
+- Tambah @media print CSS — sembunyikan semua element kecuali receipt
+- Layout receipt dirombak jadi formal: kop surat, tabel rapi, nomor registrasi prominent
+- Tambah kolom tanda tangan panitia & calon siswa
+- Tombol cetak/aksi disembunyikan saat print (class no-print)
+- Ukuran halaman A4 portrait dengan margin 1.2cm
 
 Co-authored-by: hmad28 <email1.hammad@gmail.com>

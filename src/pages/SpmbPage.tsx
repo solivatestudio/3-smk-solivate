@@ -3,7 +3,7 @@ import { PageType, PpdbApplication, SpmbSubmission } from '../types';
 import { MAJORS_DATA, SCHOOL_INFO } from '../data/schoolData';
 import { 
   GraduationCap, Sparkles, CheckCircle2, ArrowRight, Printer, 
-  HelpCircle, UserCheck, Award, FileText, Send, AlertCircle, RefreshCw 
+  HelpCircle, UserCheck, Award, FileText, Send, RefreshCw 
 } from 'lucide-react';
 
 interface SpmbPageProps {
@@ -444,82 +444,157 @@ export const SpmbPage: React.FC<SpmbPageProps> = ({ onNavigate, preselectedMajor
               </form>
             </div>
           ) : (
-            /* PRINTABLE DIGITAL RECEIPT */
-            <div className="bg-white rounded-3xl p-8 sm:p-14 border-4 border-[#023E8A] shadow-2xl space-y-8 animate-fadeIn">
-              <div className="flex items-center justify-between border-b-2 border-dashed border-[#EDF4FC] pb-6">
-                <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-xl bg-[#023E8A] flex items-center justify-center text-white font-extrabold text-xl">
+            /* PRINTABLE DIGITAL RECEIPT — class "print-receipt" untuk print.css */
+            <>
+            {/* Desktop receipt formatting wrapper */}
+            <div className="max-w-[210mm] mx-auto">
+            <div className="print-receipt bg-white rounded-3xl p-8 sm:p-12 border-4 border-[#023E8A] shadow-2xl space-y-0">
+
+              {/* Kop Surat */}
+              <div className="text-center border-b-2 border-[#023E8A] pb-5 mb-6">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <div className="w-12 h-12 rounded-xl bg-[#023E8A] flex items-center justify-center text-white font-extrabold text-xl shrink-0">
                     S<span className="text-[#D7FE3F]">01</span>
                   </div>
-                  <div>
-                    <h3 className="font-extrabold text-xl text-[#051A2D]">SMK SOLIVATE 01</h3>
-                    <p className="text-xs font-bold text-[#00B4D7]">BUKTI REGISTRASI SPMB ONLINE 2026/2027</p>
+                  <div className="text-left">
+                    <h2 className="font-extrabold text-2xl text-[#051A2D] leading-tight">SMK SOLIVATE 01</h2>
+                    <p className="text-[11px] text-[#00B4D7] font-bold">SELEKSI PENERIMAAN MURID BARU TAHUN AJARAN 2026/2027</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <span className="text-xs font-bold text-[#647084] block">STATUS PENDAFTARAN</span>
-                  <span className="bg-[#D7FE3F] text-[#051A2D] text-xs font-black px-3 py-1 rounded">
-                    TERVERIFIKASI SISTEM
-                  </span>
-                </div>
-              </div>
-
-              <div className="bg-[#EDF4FC] p-6 rounded-2xl space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#647084]">NOMOR PENDAFTARAN:</span>
-                  <span className="text-lg font-black text-[#023E8A] font-mono">{regNumber}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#647084]">JURUSAN DIPILIH:</span>
-                  <span className="text-sm font-extrabold text-[#051A2D]">
-                    {MAJORS_DATA.find(m => m.id === submittedApp.selectedMajorId)?.title}
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
-                <div>
-                  <span className="text-xs text-[#647084] font-bold block">Nama Calon Siswa:</span>
-                  <span className="font-extrabold text-[#051A2D]">{submittedApp.fullName}</span>
-                </div>
-                <div>
-                  <span className="text-xs text-[#647084] font-bold block">NISN:</span>
-                  <span className="font-extrabold text-[#051A2D]">{submittedApp.nisn}</span>
-                </div>
-                <div>
-                  <span className="text-xs text-[#647084] font-bold block">Asal Sekolah:</span>
-                  <span className="font-extrabold text-[#051A2D]">{submittedApp.previousSchool}</span>
-                </div>
-                <div>
-                  <span className="text-xs text-[#647084] font-bold block">WhatsApp Kontak:</span>
-                  <span className="font-extrabold text-[#051A2D]">{submittedApp.phone}</span>
-                </div>
-              </div>
-
-              <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-                <p className="text-xs text-amber-800 leading-relaxed font-medium">
-                  Selamat! Data Anda telah masuk ke dalam sistem panitia SPMB SMK Solivate 01. Silakan simpan nomor pendaftaran ini untuk jadwal tes wawancara dan verifikasi rapor.
+                <p className="text-[10px] text-[#647084] font-medium mt-1">
+                  Jl. Solivate Innovation Campus No. 101, Jakarta Selatan &bull; Telp: (021) 555-0199 &bull; Email: admisi@solivate.sch.id
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#EDF4FC]">
-                <button
-                  onClick={() => window.print()}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#023E8A] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-md hover:bg-[#012f6b]"
-                >
-                  <Printer className="w-4 h-4 text-[#D7FE3F]" />
-                  <span>Cetak / Simpan PDF Bukti Pendaftaran</span>
-                </button>
+              {/* Judul Dokumen */}
+              <div className="text-center mb-6">
+                <h1 className="text-lg font-black text-[#023E8A] uppercase tracking-wide">Bukti Registrasi Pendaftaran</h1>
+                <p className="text-[10px] text-[#647084] font-bold">Dokumen ini adalah bukti resmi pendaftaran SPMB SMK Solivate 01</p>
+              </div>
 
-                <button
-                  onClick={() => setSubmittedApp(null)}
-                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#EDF4FC] text-[#023E8A] font-bold text-xs hover:bg-[#00B4D7]/20"
-                >
-                  Daftar Siswa Lainnya
-                </button>
+              {/* Nomor Registrasi — prominent */}
+              <div className="border-2 border-[#023E8A] rounded-xl p-4 mb-6 text-center">
+                <p className="text-[10px] font-bold text-[#647084] uppercase tracking-wider mb-1">Nomor Registrasi</p>
+                <p className="text-2xl font-black text-[#023E8A] font-mono tracking-widest">{regNumber}</p>
+              </div>
+
+              {/* Data Pendaftar — tabel rapi */}
+              <table className="w-full text-xs border-collapse mb-6">
+                <tbody>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084] w-44">Jurusan Dipilih</td>
+                    <td className="py-2.5 font-extrabold text-[#051A2D]">: {MAJORS_DATA.find(m => m.id === submittedApp.selectedMajorId)?.title}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Nama Lengkap</td>
+                    <td className="py-2.5 font-extrabold text-[#051A2D]">: {submittedApp.fullName}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">NISN</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.nisn}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Jenis Kelamin</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.gender === 'L' ? 'Laki-laki' : 'Perempuan'}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Tempat / Tanggal Lahir</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.birthDate || '-'}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Nomor HP / WhatsApp</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.phone}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Email</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.email || '-'}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Asal Sekolah</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.previousSchool}</td>
+                  </tr>
+                  <tr className="border-b border-gray-200">
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">Nama Orang Tua / Wali</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.parentName}</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2.5 pr-4 font-bold text-[#647084]">HP Orang Tua / Wali</td>
+                    <td className="py-2.5 font-semibold text-[#051A2D]">: {submittedApp.parentPhone}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              {/* Status & Catatan */}
+              <div className="border-t-2 border-dashed border-gray-300 pt-5 mb-4">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span className="text-xs font-bold text-green-700">Status: <span className="uppercase">Terverifikasi Sistem</span></span>
+                  </div>
+                  <p className="text-[9px] text-[#647084] font-medium">
+                    Dicetak: {new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg text-center">
+                  <p className="text-[10px] text-gray-600 leading-relaxed font-medium">
+                    <strong>Catatan Penting:</strong> Simpan nomor registrasi ini untuk proses verifikasi berkas, tes wawancara, dan pengumuman hasil seleksi. Pendaftar wajib membawa bukti ini (cetak atau digital) saat datang ke kampus.
+                  </p>
+                </div>
+              </div>
+
+              {/* Tanda Tangan */}
+              <div className="border-t border-gray-200 pt-5 mt-4">
+                <div className="grid grid-cols-2 gap-8 text-xs">
+                  <div>
+                    <p className="font-bold text-[#647084] mb-1">Panitia SPMB,</p>
+                    <div className="h-14"></div>
+                    <p className="font-extrabold text-[#051A2D]">Dr. Ir. H. Hendra Solivate, M.Kom.</p>
+                    <p className="text-[10px] text-[#647084]">Kepala SMK Solivate 01</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-bold text-[#647084] mb-1">Calon Siswa,</p>
+                    <div className="h-14"></div>
+                    <p className="font-extrabold text-[#051A2D]">{submittedApp.fullName}</p>
+                    <p className="text-[10px] text-[#647084]">NISN: {submittedApp.nisn}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="text-center mt-6 pt-4 border-t-2 border-[#023E8A]">
+                <p className="text-[8px] text-[#647084] leading-relaxed">
+                  Dokumen ini sah dan diproses secara otomatis oleh sistem SPMB SMK Solivate 01. Tidak memerlukan tanda tangan basah.
+                </p>
               </div>
             </div>
+            </div>
+
+            {/* Action Buttons — hidden saat print */}
+            <div className="no-print max-w-[210mm] mx-auto mt-6">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-2xl p-6 border border-[#EDF4FC] shadow-md">
+                <div className="flex items-center gap-3 text-sm">
+                  <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0" />
+                  <p className="font-bold text-green-700 text-xs">Data telah tersimpan di sistem. Jangan lupa simpan nomor registrasi!</p>
+                </div>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => window.print()}
+                    className="px-6 py-3.5 rounded-xl bg-[#023E8A] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-md hover:bg-[#012f6b] transition-all"
+                  >
+                    <Printer className="w-4 h-4 text-[#D7FE3F]" />
+                    <span>Cetak / Simpan PDF</span>
+                  </button>
+                  <button
+                    onClick={() => setSubmittedApp(null)}
+                    className="px-6 py-3.5 rounded-xl bg-[#EDF4FC] text-[#023E8A] font-bold text-xs hover:bg-[#00B4D7]/20 transition-all"
+                  >
+                    Daftar Siswa Lainnya
+                  </button>
+                </div>
+              </div>
+            </div>
+            </>
           )}
         </section>
       )}
