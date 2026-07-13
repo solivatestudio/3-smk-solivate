@@ -63,7 +63,7 @@ export const SpmbPage: React.FC<SpmbPageProps> = ({ onNavigate, preselectedMajor
       ]
     },
     {
-      q: 'Ketika melihat sebuah produk teknologi baru, apa yang pertama kali kamu注意到?',
+      q: 'Ketika melihat sebuah produk teknologi baru, apa yang pertama kali kamu perhatikan?',
       options: [
         { label: 'Bagaimana cara aplikasi/software di dalamnya bekerja & algoritmannya', major: 'pplg' },
         { label: 'Tampilan antarmuka visualnya (UI/UX) dan estetika desain grafisnya', major: 'dkv' },

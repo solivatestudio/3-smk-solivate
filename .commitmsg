@@ -1,10 +1,5 @@
-fix: perbaiki mobile responsiveness secara menyeluruh
+fix: typo bahasa china di quiz SPMB
 
-- index.css: global minimum 44px touch target untuk button, input, select, textarea
-- SoliBotModal: chat height proporsional (sm:h-[560px]), quick chips padding py-2.5
-- ProfilPage: principal image w-48 h-48 di mobile, badge overflow diatasi
-- BerandaPage: hero image h-[250px] di mobile, partner grid min-h[72px]
-- DashboardPage: eye icon p-2 w-5, clear data buttons py-3
-- Perbaiki text-overflow dan spacing di berbagai komponen
+"注意到" → "perhatikan" di pertanyaan tes minat
 
 Co-authored-by: hmad28 <email1.hammad@gmail.com>
